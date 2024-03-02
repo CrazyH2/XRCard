@@ -3,7 +3,7 @@ Note: this only supports "immersive-vr" and "inline" currently.
 ```
 
 # XRCard
-XRCard that works with the normal polyfill
+A polyfill that makes webxr run on iOS using Cardboard.
 
 # Setup and installation
 - Download `/build/xrcard.min.js`
