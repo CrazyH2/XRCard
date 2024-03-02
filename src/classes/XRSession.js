@@ -4,19 +4,16 @@
  // © Copyright 2022 CrazyH
 
 import EventTarget from "../libraries/EventTarget";
-import XRReferenceSpace from './XRReferenceSpace';
+import CardboardVRDisplay from 'cardboard-vr-display';
 
 export default class XRSession extends EventTarget {
    constructor(config, mode, features) {
-        this.config = config;
-        this.mode = mode;
-        this.features = features;
+      this.config = config;
+      this.mode = mode;
+      this.features = features;
 
-        this.viewerSpace = new XRReferenceSpace("viewer");
-        this.inputSources = []; //
-        this.interactionMode = "world-space"; //
-        this.renderState = null; //
-        this.visibilityState = "visible"; //
+      this.vrDisplay = new CardboardVRDisplay(this.config["cardboard"]);
+      window.VRFrameData = this.vrDisplay.VRFrameData;
    };
 
    cancelAnimationFrame(handle) {

@@ -13,7 +13,6 @@ A polyfill that makes webxr run on iOS using Cardboard.
 import XRCard from "./xrcard.min.js";
 
 var xr_ios = XRCard({
-  debug: false,
   cardboard: {
     // Optionally inject custom Viewer parameters as an option. Each item
     // in the array must be an object with the following properties; here is

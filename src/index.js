@@ -14,10 +14,10 @@ const supportedSessions = {
   },
 };
 
-export default class WebXR_iOS {
+export default class XRCard {
   constructor(config = {}) {
     this.config = Object.freeze(Object.assign({}, config_defaults, config));
-  
+
     if (!('xr' in window.navigator) && this.isiOS()) this.run();
   };
 
@@ -35,13 +35,6 @@ export default class WebXR_iOS {
   };
 
   async run() {
-    window.VRFrameData = function() {
-      this.leftViewMatrix = new Float32Array(16);
-      this.rightViewMatrix = new Float32Array(16);
-      this.leftProjectionMatrix = new Float32Array(16);
-      this.rightProjectionMatrix = new Float32Array(16);
-      this.pose = null;
-    };
     window.navigator.xr = new XRSystem(this.config, supportedSessions);
   };
 
