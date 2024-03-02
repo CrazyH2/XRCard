@@ -9,10 +9,11 @@ import CardboardVRDisplay from 'cardboard-vr-display';
 export default class XRSession extends EventTarget {
    constructor(config, mode, features) {
       this.config = config;
+      this.cardboardConfig = this.config["cardboard"];
       this.mode = mode;
       this.features = features;
 
-      this.vrDisplay = new CardboardVRDisplay(this.config["cardboard"]);
+      this.vrDisplay = new CardboardVRDisplay(this.cardboardConfig);
       window.VRFrameData = this.vrDisplay.VRFrameData;
    };
 
@@ -25,7 +26,7 @@ export default class XRSession extends EventTarget {
    };
 
    requestAnimationFrame(animationFrameCallback) {
-
+      this.vrDisplay.requestAnimationFrame(animationFrameCallback);
    };
 
    requestReferenceSpace(referenceSpaceType) {
