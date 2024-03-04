@@ -87,12 +87,12 @@ var xr_ios = XRCard({
 });
 ```
 
-# Compile
+# Bundle
 - Install Rollup
 ```sh
 npm install --global rollup
 ```
-- Compile code
+- Bundle code
 ```sh
 rollup --config rollup.config.mjs
 ```
