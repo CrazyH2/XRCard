@@ -93,7 +93,6 @@ var xr_ios = XRCard({
 npm install --global rollup
 ```
 - Compile code
-- Minified
 ```sh
 rollup --config rollup.config.mjs
 ```
