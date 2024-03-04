@@ -8,22 +8,23 @@ import XRSession from "./XRSession";
 
 export default class XRSystem extends EventTarget {
   constructor(config, supportedSessions) {
-    this.config = config;
-    this.supportedSessions = supportedSessions;
-    this.immersiveSession = null;
+    super();
+    this._config = config;
+    this._supportedSessions = supportedSessions;
+    this._immersiveSession = null;
   };
 
   async isSessionSupported(sessionType) {
-    return Object.keys(this.supportedSessions).includes(sessionType);
+    return Object.keys(this._supportedSessions).includes(sessionType);
   };
 
   async requestSession(mode, options) {
-    if(!Object.keys(this.supportedSessions).includes(mode)) return console.error("Only the 'immersive-vr' mode is currently supported.");
+    if(!Object.keys(this._supportedSessions).includes(mode)) return console.error("Only the 'immersive-vr' mode is currently supported.");
 
-    const defaultFeatures = this.supportedSessions[mode];
-    const supportedFeatures = this.supportedSessions[mode].supportedFeatures;
-    const requiredFeatures = Object.freeze(Object.assign({}, defaultFeatures.requiredFeatures, config));
-    const optionalFeatures = Object.freeze(Object.assign({}, defaultFeatures.optionalFeatures, config));
+    const defaultFeatures = this._supportedSessions[mode];
+    const supportedFeatures = this._supportedSessions[mode].supportedFeatures;
+    const requiredFeatures = Object.freeze(Object.assign({}, defaultFeatures.requiredFeatures, defaultFeatures));
+    const optionalFeatures = Object.freeze(Object.assign({}, defaultFeatures.optionalFeatures, defaultFeatures));
     const allFeatures = new Set();
 
     var featureNotSupported = false;
@@ -48,11 +49,11 @@ export default class XRSystem extends EventTarget {
       };
     };
 
-    const session = new XRSession(this.config, mode, options);
-    this.immersiveSession = session;
+    const session = new XRSession(this._config, mode, options);
+    this._immersiveSession = session;
 
     function onSessionEnded() {
-      this.immersiveSession = null;
+      this._immersiveSession = null;
       session.removeEventListener('end', onSessionEnded);
     };
     session.addEventListener('end', onSessionEnded);

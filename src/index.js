@@ -18,7 +18,7 @@ export default class XRCard {
   constructor(config = {}) {
     this.config = Object.freeze(Object.assign({}, config_defaults, config));
 
-    if (!('xr' in window.navigator) && this.isiOS()) this.run();
+    if (!('xr' in window.navigator) && (this.isiOS() ? this.isiOS() : (this.config.debug))) this.run();
   };
 
   isiOS() {

@@ -5,23 +5,23 @@
 
 export default class EventTarget {
     constructor() {
-      this.listeners = new Map();
+      this._listeners = new Map();
     };
   
     addEventListener(type, listener) {
       if(typeof type !== "string") console.error("Param 'type' needs to be a string");
       if(typeof listener !== "function") console.error("Param 'listener' needs to be a function");
 
-      var currListeners = this.listeners.get(type) || [];
+      var currListeners = this._listeners.get(type) || [];
       currListeners.push(listener);
-      this.listeners.set(type, currListeners);
+      this._listeners.set(type, currListeners);
     };
   
     dispatchEvent(type, event) {
       if(typeof type !== "string") console.error("Param 'type' needs to be a string");
       if(typeof listener !== "function") console.error("Param 'event' needs to be a object");
       
-      var currListeners = Object.freeze(this.listeners.get(type) || []);
+      var currListeners = Object.freeze(this._listeners.get(type) || []);
 
       for (const listener of currListeners) {
         listener(event);
@@ -34,8 +34,8 @@ export default class EventTarget {
       if(typeof type !== "string") console.error("Param 'type' needs to be a string");
       if(typeof listener !== "function") console.error("Param 'listener' needs to be a function");
 
-      var currListeners = this.listeners.get(type) || [];
+      var currListeners = this._listeners.get(type) || [];
       delete currListeners[currListeners.indexOf(listener)];
-      this.listeners.set(type, currListeners);
+      this._listeners.set(type, currListeners);
     };
 };

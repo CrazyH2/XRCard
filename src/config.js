@@ -3,8 +3,7 @@
  // Do not rebrand if you are distributing it
  // © Copyright 2022 CrazyH
 
-export default config_defaults = {
-  debug: false,
+var config_defaults = {
   cardboard: {
     // Optionally inject custom Viewer parameters as an option. Each item
     // in the array must be an object with the following properties; here is
@@ -77,3 +76,5 @@ export default config_defaults = {
     DIRTY_SUBMIT_FRAME_BINDINGS: false,
   },
 };
+
+export default config_defaults;

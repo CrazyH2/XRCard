@@ -88,11 +88,14 @@ var xr_ios = XRCard({
 ```
 
 # Compile
+- Install Rollup
 ```sh
-rollup ./src/index.js --file ./builds/xrcard.js --format iife
+npm install --global rollup
 ```
+- Compile code
+- Minified
 ```sh
-rollup ./src/index.js --file ./builds/xrcard.min.js --format iife
+rollup --config rollup.config.mjs
 ```
 
 # License
