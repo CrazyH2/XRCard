@@ -7,7 +7,7 @@ export default {
     input: './src/run.js',
     output: [
         {
-            file: './build/xrcard.js',
+            file: './builds/xrcard.js',
             format: 'umd',
             banner: ` // © Copyright 2022 CrazyH
  // This file was originally made by CrazyH
@@ -21,7 +21,7 @@ export default {
 `,
         },
         {
-            file: './build/xrcard.min.js',
+            file: './builds/xrcard.min.js',
             format: 'umd',
             compact: true,
             banner: ` // © Copyright 2022 CrazyH
