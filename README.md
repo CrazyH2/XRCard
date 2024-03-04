@@ -89,10 +89,10 @@ var xr_ios = XRCard({
 
 # Compile
 ```sh
-rollup /src/index.js --file /builds/xrcard.js --format iife
+rollup ./src/index.js --file ./builds/xrcard.js --format iife
 ```
 ```sh
-rollup /src/index.js --file /builds/xrcard.min.js --format iife
+rollup ./src/index.js --file ./builds/xrcard.min.js --format iife
 ```
 
 # License

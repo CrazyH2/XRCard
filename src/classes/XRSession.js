@@ -4,7 +4,7 @@
  // © Copyright 2022 CrazyH
 
 import EventTarget from "../libraries/EventTarget";
-import CardboardVRDisplay from 'cardboard-vr-display';
+import CardboardVRDisplay from '../libraries/cardboard-vr-display';
 
 export default class XRSession extends EventTarget {
    constructor(config, mode, features) {
