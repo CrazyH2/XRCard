@@ -13,21 +13,26 @@ export default class XRSession extends EventTarget {
       this._cardboardConfig = this._config["cardboard"];
       this._mode = mode;
       this._features = features;
+      this._ended = false;
 
       this._vrDisplay = CardboardVRDisplay(this.cardboardConfig);
       window.VRFrameData = this._vrDisplay.VRFrameData;
    };
 
    cancelAnimationFrame(handle) {
-
+      if(this._ended == false) this._vrDisplay.cancelAnimationFrame(handle);
    };
 
    end() {
-
+      if(this._ended == true) return;
+      
+      this.dispatchEvent("end", { session: this });
+      this._ended = true;
+      return this;
    };
 
    requestAnimationFrame(animationFrameCallback) {
-      this._vrDisplay.requestAnimationFrame(animationFrameCallback);
+      if(this._ended == false) this._vrDisplay.requestAnimationFrame(animationFrameCallback);
    };
 
    requestReferenceSpace(referenceSpaceType) {
