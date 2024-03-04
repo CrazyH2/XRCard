@@ -3456,7 +3456,7 @@
      constructor(config, mode, features) {
         super();
         this._config = config;
-        this._cardboardConfig = this.config["cardboard"];
+        this._cardboardConfig = this._config["cardboard"];
         this._mode = mode;
         this._features = features;
 
@@ -3505,13 +3505,13 @@
 
       const defaultFeatures = this._supportedSessions[mode];
       const supportedFeatures = this._supportedSessions[mode].supportedFeatures;
-      const requiredFeatures = Object.freeze(Object.assign({}, defaultFeatures.requiredFeatures, defaultFeatures));
-      const optionalFeatures = Object.freeze(Object.assign({}, defaultFeatures.optionalFeatures, defaultFeatures));
+      const requiredFeatures = Object.freeze(Object.assign([], defaultFeatures.requiredFeatures, defaultFeatures.requiredFeatures));
+      const optionalFeatures = Object.freeze(Object.assign([], defaultFeatures.optionalFeatures, defaultFeatures.optionalFeatures));
       const allFeatures = new Set();
 
       var featureNotSupported = false;
       for (const feature of requiredFeatures) {
-        if(supportedFeatures.includes(feature)) {
+        if(!supportedFeatures.includes(feature)) {
           console.error("The required feature " + feature + " is not supported");
           featureNotSupported = true;
         } else {
@@ -3526,7 +3526,7 @@
         } else {
           allFeatures.add(feature);
         }    }
-      const session = new XRSession(this._config, mode, options);
+      const session = new XRSession(this._config, mode, allFeatures);
       this._immersiveSession = session;
 
       function onSessionEnded() {

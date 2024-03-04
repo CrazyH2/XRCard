@@ -10,7 +10,7 @@ export default class XRSession extends EventTarget {
    constructor(config, mode, features) {
       super();
       this._config = config;
-      this._cardboardConfig = this.config["cardboard"];
+      this._cardboardConfig = this._config["cardboard"];
       this._mode = mode;
       this._features = features;
 
@@ -39,4 +39,3 @@ export default class XRSession extends EventTarget {
    };
 
 };
- 
