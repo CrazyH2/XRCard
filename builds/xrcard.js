@@ -3492,9 +3492,21 @@
      };
 
      updateRenderState(state = null) {
-
+        if(state !== null) this._vrDisplay.requestPresent([{source: state.baseLayer.gl.canvas}]);
      };
 
+  }
+
+  // © Copyright 2022 CrazyH
+   // This file was originally made by CrazyH
+   // Do not rebrand if you are distributing it
+   // © Copyright 2022 CrazyH
+
+  class XRWebGLLayer {
+      constructor(session, gl) {
+          this.session = session;
+          this.gl = gl;
+      };
   }
 
   // © Copyright 2022 CrazyH
@@ -3505,6 +3517,8 @@
       this._config = config;
       this._supportedSessions = supportedSessions;
       this._immersiveSession = null;
+
+      window.XRWebGLLayer = XRWebGLLayer;
     };
 
     async isSessionSupported(sessionType) {

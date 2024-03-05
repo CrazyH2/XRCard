@@ -46,7 +46,7 @@ export default class XRSession extends EventTarget {
    };
 
    updateRenderState(state = null) {
-
+      if(state !== null) this._vrDisplay.requestPresent([{source: state.baseLayer.gl.canvas}]);
    };
 
 };

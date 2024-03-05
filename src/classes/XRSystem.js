@@ -5,6 +5,7 @@
 
 import EventTarget from "../libraries/EventTarget";
 import XRSession from "./XRSession";
+import XRWebGLLayer from "./XRWebGLLayer";
 
 export default class XRSystem extends EventTarget {
   constructor(config, supportedSessions) {
@@ -12,6 +13,8 @@ export default class XRSystem extends EventTarget {
     this._config = config;
     this._supportedSessions = supportedSessions;
     this._immersiveSession = null;
+
+    window.XRWebGLLayer = XRWebGLLayer;
   };
 
   async isSessionSupported(sessionType) {
