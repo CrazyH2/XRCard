@@ -17,15 +17,21 @@ export default class XRSession extends EventTarget {
 
       this._vrDisplay = CardboardVRDisplay(this.cardboardConfig);
       window.VRFrameData = this._vrDisplay.VRFrameData;
+
+      this.inputSources = [];
+      this.interactionMode = "world-space";
+      this.preferredReflectionFormat = "srgba8";
+      this.renderState = "fix this"; // fix this
+      this.visibilityState = "visible";
    };
 
    cancelAnimationFrame(handle) {
       if(this._ended == false) this._vrDisplay.cancelAnimationFrame(handle);
    };
 
-   end() {
+   async end() {
       if(this._ended == true) return;
-      
+
       this.dispatchEvent("end", { session: this });
       this._ended = true;
       return this;
